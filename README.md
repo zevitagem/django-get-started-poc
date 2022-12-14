@@ -1,55 +1,60 @@
 ## Subir a aplicação
 ```
-docker compose up -d
+$ docker compose up -d
 ```
 
 ## Migrar aplicações
 Executar a migração de um aplicativo específico
 ```
-python manage.py makemigrations <app_name>
+$ python manage.py makemigrations <app_name>
 ```
 
 Executar a migração global
 ```
-python manage.py migrate
+$ python manage.py migrate
 ```
 
 ## Criar um aplicativo novo
 ```
-python manage.py startapp <app_name>
+$ python manage.py startapp <app_name>
 ```
 
 ## Criar um usuário para o painel administrativo
 http://127.0.0.1:8000/admin/
 ```
-python manage.py createsuperuser
+$ python manage.py createsuperuser
+```
+
+## Testar a aplicação
+```
+$ python manage.py test core
 ```
 
 ## Acessar o Postgres via terminal
 
 Entrar no postgres
 ```
-psql -U postgres
+$ psql -U postgres
 ```
 
 Escolher o banco de dados
 ```
-\c postgres
+$ \c postgres
 ```
 
 Listar as tabelas do banco selecionado
 ```
-\dt
+$ \dt
 
-SELECT * FROM pg_catalog.pg_tables;
+$ SELECT * FROM pg_catalog.pg_tables;
 ```
 
 ## Imprimir IP do Postgres para vincular no PgAdmin
 
 ```
-docker ps
+$ docker ps
 
-docker inspect <container> | grep IPAddress
+$ docker inspect <container> | grep IPAddress
 ```
 
 ## Referências
