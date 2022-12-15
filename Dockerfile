@@ -1,7 +1,17 @@
 FROM python:3
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV POETRY_VERSION=1.2.0
+
 WORKDIR /code
-COPY requirements.txt /code/
-RUN pip install -r requirements.txt
+
+RUN pip install "poetry==$POETRY_VERSION"
+RUN poetry config virtualenvs.create false
+
+COPY pyproject.toml poetry.lock* /code/
+
+RUN poetry install --no-root -vvv
+RUN poetry lock --no-update
+RUN poetry export --format=requirements.txt > requirements.txt
+
 COPY . /code/
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
